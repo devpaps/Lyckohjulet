@@ -56,6 +56,8 @@ namespace Lyckohjulet
 					nyttSvar = Console.ReadLine();
 					su = int.TryParse(nyttSvar, out resultat);
 				}
+				var rattt = $"\nGrattis du gissade rätt på siffran {nyttSvar}! \nTryck på [{ConsoleKey.Enter}] för att avsluta.";
+				return rattt;
 			}
 
 			ConsoleKey continueKey = ConsoleKey.Enter;
