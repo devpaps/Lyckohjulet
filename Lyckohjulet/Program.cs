@@ -2,7 +2,7 @@
 
 namespace Lyckohjulet
 {
-	public class Program
+	public static class Program
 	{
 		// Det här är en metod, tänk funktion som i Javascript för mig.
 		public static void Main(string[] args)
@@ -21,15 +21,14 @@ namespace Lyckohjulet
 			Console.WriteLine("\n");
 			Console.WriteLine("Skriv ett tal mellan 1 - 10");
 			string input = gissatTal.talet = Console.ReadLine();
-			int result;
-			bool succ = int.TryParse(input, out result);
+			bool success = int.TryParse(input, out int result);
 
-			while (!succ)
+			while (!success)
 			{
 				Console.WriteLine("Du har inte angett en siffra. Försök igen.");
 				Console.WriteLine("Ange en siffra");
 				input = Console.ReadLine();
-				succ = int.TryParse(input, out result);
+				success = int.TryParse(input, out result);
 			}
 			string x = KollaTalet(result, slumpTal.slumpatTal);
 
@@ -38,30 +37,31 @@ namespace Lyckohjulet
 
 		}
 
-		public static string KollaTalet(int gissadeTalet, int genereratTal)
+		private static string KollaTalet(int gissadeTalet, int genereratTal)
 		{
 			//Skriver ut det slumpade talet av programmet.
 			Console.WriteLine(genereratTal);
 
+			string correct;
 			if (gissadeTalet != genereratTal)
 			{
 				Console.WriteLine("Fel svar. Gissa igen.");
 				string nyttSvar = Console.ReadLine();
-				int resultat;
-				bool su = int.TryParse(nyttSvar, out resultat);
-				while (!su)
+				
+				bool success = int.TryParse(nyttSvar, out _);
+				while (!success)
 				{
 					Console.WriteLine("Du har inte angett en siffra. Försök igen.");
 					Console.WriteLine("Ange en siffra");
 					nyttSvar = Console.ReadLine();
-					su = int.TryParse(nyttSvar, out resultat);
+					success = int.TryParse(nyttSvar, out _);
 				}
-				var rattt = $"\nGrattis du gissade rätt på siffran {nyttSvar}! \nTryck på [{ConsoleKey.Enter}] för att avsluta.";
-				return rattt;
+				correct = $"\nGrattis du gissade rätt på siffran {nyttSvar}! \nTryck på [{ConsoleKey.Enter}] för att avsluta.";
+				return correct;
 			}
 
 			ConsoleKey continueKey = ConsoleKey.Enter;
-			var correct = $"\nGrattis du gissade rätt på siffran {gissadeTalet}! \nTryck på [{continueKey}] för att avsluta.";
+			correct = $"\nGrattis du gissade rätt på siffran {gissadeTalet}! \nTryck på [{continueKey}] för att avsluta.";
 			return correct;
 
 
